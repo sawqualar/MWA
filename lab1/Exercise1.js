@@ -1,52 +1,27 @@
-/*
+const filterWords = ['house','nice'];
 let input = "This house is nice!";
 
-String.prototype.filterWords = function(filter){
-   let output = this;
-    for(let x of filter){
-        console.log(x);
-        output = output.replace(x,"***");
-    }
-    return output;
-}
-console.log(input.filterWords(["house","nice"]));
-*/
-/* ES6 features*/
-/*
-let input = "This house is nice!";
-String.prototype.filterWords = function(filter){
-    let output = this;
-    filter.map( x => output = output.replace(x,"***"));
-    return output;
-}
-console.log(input.filterWords(["house","nice"]));
-*/
-
-
-//const{Observable,of} = require('rxjs'); 
-//const{map,filter}=require('rxjs/operators')
-
+//ES6
 String.prototype.filterWords = function(filter){
     let output = this;
     filter.map( x =>  output = output.replace(x,"***"));
     return output;
 }
+console.log(`ES6 ${input.filterWords(filterWords)}`);
 
-const filterWords = ['house','nice'];
-let input = "This house is nice!";
 
+//Promise
 function fnPromise(arr, timer) {
-    return new Promise(result => {
+    return new Promise((result) => {
         setTimeout(() => result(input.filterWords(arr)), timer);
     });
 }
 
-//Promise
 fnPromise(filterWords,2000)
 .then(res => console.log(`Promise: ${res}`))
 .catch(err => console.log(err));
 
-
+//async/wait
 async function replace(){
       try{
             let result = await fnPromise(filterWords,4000);
@@ -58,4 +33,17 @@ async function replace(){
 }
 replace();
 console.log('Finish');
+
+
+//Observable
+const { from } = require('rxjs');
+const { map } = require('rxjs/operators');
+
+  let output = input;
+  from(filterWords)
+    .pipe(
+        map((word) => {return output = output.replace(word,"***");})
+    )
+    .subscribe(i => console.log(`Observable: ${i}`));
+
 
