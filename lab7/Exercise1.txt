@@ -1,0 +1,9 @@
+{
+  _id : objectId(),
+  ISBN : 'ISBN001',
+  title : 'Computer Science',
+  author : 'Assad',
+  tag : ["computer", "Programming"],
+  borrowedStudents : [{ studentId : '986334', returnDate : '12/30/2018', contact : '641-242-1231' },
+  {studentId : '986000', returnDate : '12/30/2018', contact : '641-242-0000'}]
+}
