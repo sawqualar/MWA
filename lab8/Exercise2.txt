@@ -1,0 +1,11 @@
+simple Index
+
+    - Author
+
+    - borrowedEntries.studentId
+
+
+
+Multikey Index
+
+    - Tags
